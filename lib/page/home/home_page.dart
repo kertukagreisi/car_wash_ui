@@ -53,8 +53,7 @@ class HomePage extends StatelessWidget {
   }
 
   List<PlutoRow> _getRows(List<dynamic> cars) {
-    List<PlutoRow> rows = [];
-    cars
+    return cars
         .map((car) => PlutoRow(
               cells: {
                 'id': PlutoCell(value: '${car.id}'),
@@ -64,7 +63,6 @@ class HomePage extends StatelessWidget {
               },
             ))
         .toList(growable: false);
-    return rows;
   }
 
   List<PlutoColumnGroup>? _getColumnGroups() {
