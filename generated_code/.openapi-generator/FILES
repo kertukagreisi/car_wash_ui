@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 analysis_options.yaml
@@ -22,7 +21,3 @@ lib/auth/oauth.dart
 lib/model/car.dart
 lib/model/owner.dart
 pubspec.yaml
-test/car_endpoint_api_test.dart
-test/car_test.dart
-test/owner_endpoint_api_test.dart
-test/owner_test.dart

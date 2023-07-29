@@ -1,6 +1,13 @@
+import 'package:car_wash_ui/page/home/home_page.dart';
+import 'package:car_wash_ui/page/home/home_page_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
+
+import 'navigation/nav_route.dart';
 
 void main() {
+  setupLocator();
   runApp(const MyApp());
 }
 
@@ -9,26 +16,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MyHomePage(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: NavRoute.homeScreen,
+      routes: {
+        NavRoute.homeScreen: (context) => ChangeNotifierProvider<HomeViewModel>(
+              create: (_) => HomeViewModel(),
+              child: const HomePage(),
+            ),
+      },
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        ),
-    );
-  }
+void setupLocator() {
+  GetIt.instance.registerLazySingleton(() => HomeViewModel());
 }
