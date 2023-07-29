@@ -14,7 +14,7 @@ class HomeViewModel extends ChangeNotifier {
   }
 
   Future<void> loadData() async {
-    await CarWashApi.ownerEndpointApi.ownersAllGetWithHttpInfo().then((response) {
+    await CarWashApi.carEndpointApi.carsAllGetWithHttpInfo().then((response) {
       cars = json.decode(response.body);
     });
   }

@@ -56,10 +56,10 @@ class HomePage extends StatelessWidget {
     return cars
         .map((car) => PlutoRow(
               cells: {
-                'id': PlutoCell(value: '${car.id}'),
-                'model': PlutoCell(value: car.model),
-                'year': PlutoCell(value: '${car.year}'),
-                'owner': PlutoCell(value: '${car.owner?.firstName} ${car.owner?.lastName}'),
+                'id': PlutoCell(value: '${car['id']}'),
+                'model': PlutoCell(value: car['model']),
+                'year': PlutoCell(value: '${car['year']}'),
+                'owner': PlutoCell(value: '${car['owner']['firstName']} ${car['owner']['lastName']}'),
               },
             ))
         .toList(growable: false);
