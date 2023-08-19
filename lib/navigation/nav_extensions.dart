@@ -69,7 +69,9 @@ extension NavControllerHelper on BuildContext {
 
     switch (navRoute) {
       case NavRoute.home:
-        return 'Home Screen';
+        return 'Owners';
+      case NavRoute.cars:
+        return 'Cars';
       default:
         return '';
     }

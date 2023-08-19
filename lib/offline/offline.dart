@@ -70,9 +70,7 @@ class _OfflineState extends State<Offline> {
                 left: 0.0,
                 right: 0.0,
                 child: Container(
-                  color: connected
-                      ? const Color(0xFF00EE44)
-                      : const Color(0xFFEE4400),
+                  color: connected ? const Color(0xFF00EE44) : const Color(0xFFEE4400),
                   child: Center(
                     child: Text(connected ? 'ONLINE' : 'OFFLINE'),
                   ),
@@ -98,16 +96,13 @@ class _OfflineState extends State<Offline> {
                                     padding: const EdgeInsets.only(top: 20),
                                     itemCount: numbers.length,
                                     itemBuilder: (build, index) => ListTile(
-                                      title: Text(
-                                          'Number ${numbers[index].number}'),
-                                      subtitle:
-                                          Text('ID: (${numbers[index].id})'),
+                                      title: Text('Number ${numbers[index].number}'),
+                                      subtitle: Text('ID: (${numbers[index].id})'),
                                       leading: Text('${index + 1}'),
                                       trailing: IconButton(
                                         icon: const Icon(Icons.delete_forever),
                                         onPressed: () async {
-                                          await _deleteNumber(
-                                              numbers[index].id);
+                                          await _deleteNumber(numbers[index].id);
                                         },
                                       ),
                                     ),

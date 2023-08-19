@@ -1,7 +1,7 @@
+import 'package:car_wash_ui/resources/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:car_wash_ui/resources/fonts.dart';
 
 import '../../resources/app_colors.dart';
 import '../../resources/dimens.dart';

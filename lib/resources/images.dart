@@ -3,6 +3,9 @@ class Images {
 
   static const _imagesPath = 'assets/images/';
 
-  static const beachIcon = '${_imagesPath}beach.svg';
+  static const carIcon = '${_imagesPath}car.svg';
+  static const ownerIcon = '${_imagesPath}owner.svg';
+  static const collapseIcon = '${_imagesPath}collapse.svg';
+  static const helpIcon = '${_imagesPath}help.svg';
   static const ragnarImage = '${_imagesPath}ragnar.jpg';
 }

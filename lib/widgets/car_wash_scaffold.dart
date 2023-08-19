@@ -38,12 +38,12 @@ class _CarWashScaffoldState extends State<CarWashScaffold> {
 
   List<_NavigationElement> get _navElements => [
         _NavigationElement(
-          imagePath: Images.beachIcon,
+          imagePath: Images.ownerIcon,
           label: 'Owners',
           route: NavRoute.home,
         ),
         _NavigationElement(
-          imagePath: Images.beachIcon,
+          imagePath: Images.carIcon,
           label: 'Cars',
           route: NavRoute.cars,
         ),
@@ -82,15 +82,13 @@ class _CarWashScaffoldState extends State<CarWashScaffold> {
                 onTap: () async {
                   await context.navigateToPreviousLevel();
                 },
-                child: const SizedBox(
-                  width: 12,
-                  child: Icon(
-                    Icons.arrow_back_ios_outlined,
-                  ),
+                child: const Icon(
+                  Icons.arrow_back_ios_outlined,
+                  size: 14,
                 ),
               )
             : const SizedBox(
-                width: 50,
+                width: 36,
               ),
         title: _buildAppBarTitle(),
         actions: _buildAppBarActions(),
@@ -120,14 +118,14 @@ class _CarWashScaffoldState extends State<CarWashScaffold> {
                           _buildTrailingWidget(
                             extended,
                             'Collapse',
-                            Images.beachIcon,
+                            Images.collapseIcon,
                             null,
                             () {
                               _isRailExtended.value = !_isRailExtended.value;
                             },
                           ),
                           Dimens.smallSizedBox,
-                          _buildTrailingWidget(extended, 'Help Center', Images.beachIcon, null, null),
+                          _buildTrailingWidget(extended, 'Help', Images.helpIcon, null, null),
                           Dimens.smallSizedBox,
                         ],
                       )),
@@ -201,7 +199,7 @@ class _CarWashScaffoldState extends State<CarWashScaffold> {
           child: Text(
             context.getAppBarTitle(),
             style: Dimens.extraSmallHeadTextStyle.copyWith(
-              fontSize: 13,
+              fontSize: 16,
               color: Colors.white,
               fontWeight: FontWeight.w700,
               letterSpacing: 0.01 * 12,
@@ -212,15 +210,15 @@ class _CarWashScaffoldState extends State<CarWashScaffold> {
     });
   }
 
-  Widget _buildAppBarLeading() => Padding(
-        padding: const EdgeInsets.only(right: 16.0),
+  Widget _buildAppBarLeading() => Container(
+        margin: const EdgeInsets.symmetric(horizontal: 8.0),
         child: GestureDetector(
           onTap: () {
             _isRailExtended.value = !_isRailExtended.value;
           },
           child: const Icon(
-            Icons.message,
-            size: 16,
+            Icons.menu,
+            size: 24,
           ),
         ),
       );
@@ -230,7 +228,7 @@ class _CarWashScaffoldState extends State<CarWashScaffold> {
       GestureDetector(
         child: const Icon(
           Icons.message,
-          size: 16,
+          size: 24,
         ),
       ),
       _buildAppBarLeading(),

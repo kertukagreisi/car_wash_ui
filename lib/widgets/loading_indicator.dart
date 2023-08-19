@@ -24,7 +24,7 @@ class LoadingIndicator extends StatelessWidget {
           RotationTransition(
             turns: const AlwaysStoppedAnimation(0.2),
             child: SvgPicture.asset(
-              Images.beachIcon,
+              Images.carIcon,
               width: 30,
               height: 30,
             ),

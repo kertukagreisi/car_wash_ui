@@ -51,11 +51,16 @@ class HomePage extends ViewModelWidget<HomeViewModel> {
       padding: const EdgeInsets.all(24.0),
       child: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: Dimens.mediumPadding,
-              child: Text('You have ${viewModel.owners.length} owners registered on the database!', style: Dimens.mediumHeadTextStyle),
+            Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 32.0, left: 32.0),
+                    child: Text('You have ${viewModel.owners.length} owners registered on the database!', style: Dimens.mediumHeadTextStyle),
+                  ),
+                ),
+              ],
             ),
             SizedBox(
               width: 1000,

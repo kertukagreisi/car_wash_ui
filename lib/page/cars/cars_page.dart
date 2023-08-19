@@ -49,11 +49,16 @@ class CarsPage extends ViewModelWidget<CarsViewModel> {
       padding: const EdgeInsets.all(24.0),
       child: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: Dimens.mediumPadding,
-              child: Text('Ke ${viewModel.cars.length} makina te regjistruara ne databaze!', style: Dimens.mediumHeadTextStyle),
+            Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 32.0, left: 32.0),
+                    child: Text('You have ${viewModel.cars.length} cars registered in the database!', style: Dimens.mediumHeadTextStyle),
+                  ),
+                ),
+              ],
             ),
             SizedBox(
               width: 1000,

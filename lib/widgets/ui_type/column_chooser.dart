@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:car_wash_ui/shared/snackbar_service.dart';
+import 'package:flutter/material.dart';
 
 class ColumnChooser extends StatefulWidget {
   final List<String> items;
@@ -45,9 +45,7 @@ class _ColumnChooserState extends State<ColumnChooser> {
       title: const Text('Select Topics'),
       content: SingleChildScrollView(
         child: Container(
-          constraints: const BoxConstraints(
-            minWidth: 300.0
-          ),
+          constraints: const BoxConstraints(minWidth: 300.0),
           child: ListBody(
             children: widget.items
                 .map((item) => CheckboxListTile(

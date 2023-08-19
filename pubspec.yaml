@@ -42,7 +42,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/ragnar.jpg
+    - assets/images/
 
   fonts:
     - family: Trajan Pro

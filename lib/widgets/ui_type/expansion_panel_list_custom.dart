@@ -1,8 +1,8 @@
 // Copyright 2014 The Flutter Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
-import 'package:flutter/material.dart';
 import 'package:car_wash_ui/resources/app_colors.dart';
+import 'package:flutter/material.dart';
 
 const double _kPanelHeaderCollapsedHeight = kMinInteractiveDimension;
 const EdgeInsets _kPanelHeaderExpandedDefaultPadding = EdgeInsets.symmetric(
@@ -20,9 +20,7 @@ class _SaltedKey<S, V> extends LocalKey {
     if (other.runtimeType != runtimeType) {
       return false;
     }
-    return other is _SaltedKey<S, V>
-        && other.salt == salt
-        && other.value == value;
+    return other is _SaltedKey<S, V> && other.salt == salt && other.value == value;
   }
 
   @override
@@ -109,7 +107,6 @@ class ExpansionPanelCustom {
 ///
 /// See [ExpansionPanelListCustom.radio] for a sample implementation.
 class ExpansionPanelRadio extends ExpansionPanelCustom {
-
   /// An expansion panel that allows for radio functionality.
   ///
   /// A unique [value] must be passed into the constructor. The
@@ -157,7 +154,7 @@ class ExpansionPanelListCustom extends StatefulWidget {
     this.expandedHeaderPadding = _kPanelHeaderExpandedDefaultPadding,
     this.dividerColor,
     this.elevation = 2,
-  }) : _allowOnlyOnePanelOpen = false,
+  })  : _allowOnlyOnePanelOpen = false,
         initialOpenPanelValue = null;
 
   /// Creates a radio expansion panel list widget.
@@ -247,8 +244,7 @@ class _ExpansionPanelListState extends State<ExpansionPanelListCustom> {
     if (widget._allowOnlyOnePanelOpen) {
       assert(_allIdentifiersUnique(), 'All ExpansionPanelRadio identifier values must be unique.');
       if (widget.initialOpenPanelValue != null) {
-        _currentOpenPanel =
-            searchPanelByValue(widget.children.cast<ExpansionPanelRadio>(), widget.initialOpenPanelValue);
+        _currentOpenPanel = searchPanelByValue(widget.children.cast<ExpansionPanelRadio>(), widget.initialOpenPanelValue);
       }
     }
   }
@@ -262,8 +258,7 @@ class _ExpansionPanelListState extends State<ExpansionPanelListCustom> {
       // If the previous widget was non-radio ExpansionPanelListCustom, initialize the
       // open panel to widget.initialOpenPanelValue
       if (!oldWidget._allowOnlyOnePanelOpen) {
-        _currentOpenPanel =
-            searchPanelByValue(widget.children.cast<ExpansionPanelRadio>(), widget.initialOpenPanelValue);
+        _currentOpenPanel = searchPanelByValue(widget.children.cast<ExpansionPanelRadio>(), widget.initialOpenPanelValue);
       }
     } else {
       _currentOpenPanel = null;
@@ -296,9 +291,7 @@ class _ExpansionPanelListState extends State<ExpansionPanelListCustom> {
       // expansionCallback (if any) to false, because it's closing.
       for (int childIndex = 0; childIndex < widget.children.length; childIndex += 1) {
         final ExpansionPanelRadio child = widget.children[childIndex] as ExpansionPanelRadio;
-        if (widget.expansionCallback != null &&
-            childIndex != index &&
-            child.value == _currentOpenPanel?.value) {
+        if (widget.expansionCallback != null && childIndex != index && child.value == _currentOpenPanel?.value) {
           widget.expansionCallback!(childIndex, false);
         }
       }
@@ -309,7 +302,7 @@ class _ExpansionPanelListState extends State<ExpansionPanelListCustom> {
     }
   }
 
-  ExpansionPanelRadio? searchPanelByValue(List<ExpansionPanelRadio> panels, Object? value)  {
+  ExpansionPanelRadio? searchPanelByValue(List<ExpansionPanelRadio> panels, Object? value) {
     for (final ExpansionPanelRadio panel in panels) {
       if (panel.value == value) {
         return panel;
@@ -320,9 +313,10 @@ class _ExpansionPanelListState extends State<ExpansionPanelListCustom> {
 
   @override
   Widget build(BuildContext context) {
-    assert(kElevationToShadow.containsKey(widget.elevation),
-    'Invalid value for elevation. See the kElevationToShadow constant for'
-        ' possible elevation values.',
+    assert(
+      kElevationToShadow.containsKey(widget.elevation),
+      'Invalid value for elevation. See the kElevationToShadow constant for'
+      ' possible elevation values.',
     );
 
     final List<MergeableMaterialItem> items = <MergeableMaterialItem>[];
@@ -341,18 +335,16 @@ class _ExpansionPanelListState extends State<ExpansionPanelListCustom> {
       Widget expandIconContainer = Container(
         margin: const EdgeInsetsDirectional.only(end: 8.0),
         child: ExpandIcon(
-          color:AppColors.darkBlue,
+          color: AppColors.darkBlue,
           isExpanded: _isChildExpanded(index),
           padding: const EdgeInsets.all(16.0),
-          onPressed: !child.canTapOnHeader
-              ? (bool isExpanded) => _handlePressed(isExpanded, index)
-              : null,
+          onPressed: !child.canTapOnHeader ? (bool isExpanded) => _handlePressed(isExpanded, index) : null,
         ),
       );
       if (!child.canTapOnHeader) {
         final MaterialLocalizations localizations = MaterialLocalizations.of(context);
         expandIconContainer = Semantics(
-          label: _isChildExpanded(index)? localizations.expandedIconTapHint : localizations.collapsedIconTapHint,
+          label: _isChildExpanded(index) ? localizations.expandedIconTapHint : localizations.collapsedIconTapHint,
           container: true,
           child: expandIconContainer,
         );
