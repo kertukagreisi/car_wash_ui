@@ -1,3 +1,9 @@
-class NavRoute {
-  static const homeScreen = '/';
+enum NavRoute {
+  home('/'),
+  cars('/cars'),
+  pageNotFound('/not-found');
+
+  const NavRoute(this.path);
+
+  final String path;
 }

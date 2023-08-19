@@ -1,7 +1,8 @@
 import 'package:car_wash_ui/generated_code/lib/api.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class CarWashApi {
-  static const String baseURL = 'http://localhost:8081';
+  static String baseURL = dotenv.get('BACKEND_PATH');
 
   static final ApiClient _apiClient = ApiClient(basePath: baseURL);
 

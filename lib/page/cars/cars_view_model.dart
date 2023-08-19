@@ -1,16 +1,18 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-
 import '../../api-client/api_client.dart';
+import '../../shared/mvvm/view_model.dart';
 
-class HomeViewModel extends ChangeNotifier {
+class CarsViewModel extends ViewModel {
   late List<dynamic> cars;
   Map<String, String> columnNames = {'id': 'Id', 'model': 'Model', 'year': 'Year', 'owner': 'Owner'};
 
-  @protected
+  @override
   Future<void> init() async {
-    await loadData();
+    super.init();
+    loadDataAsync(() async {
+      await loadData();
+    });
   }
 
   Future<void> loadData() async {

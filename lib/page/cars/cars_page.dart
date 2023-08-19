@@ -4,10 +4,10 @@ import 'package:car_wash_ui/shared/mvvm/view_model_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 
-import 'home_view_model.dart';
+import 'cars_view_model.dart';
 
-class HomePage extends ViewModelWidget<HomeViewModel> {
-  const HomePage({super.key});
+class CarsPage extends ViewModelWidget<CarsViewModel> {
+  const CarsPage({super.key});
 
   List<PlutoColumn> _getColumns(Map<String, String> columnNames) {
     List<PlutoColumn> columns = [];
@@ -17,15 +17,14 @@ class HomePage extends ViewModelWidget<HomeViewModel> {
     return columns;
   }
 
-  List<PlutoRow> _getRows(List<dynamic> owners) {
-    return owners
-        .map((owner) => PlutoRow(
+  List<PlutoRow> _getRows(List<dynamic> cars) {
+    return cars
+        .map((car) => PlutoRow(
               cells: {
-                'id': PlutoCell(value: '${owner['id']}'),
-                'firstName': PlutoCell(value: owner['firstName']),
-                'lastName': PlutoCell(value: '${owner['lastName']}'),
-                'phoneNumber': PlutoCell(value: '${owner['phoneNumber']}'),
-                'age': PlutoCell(value: '${owner['age']}'),
+                'id': PlutoCell(value: '${car['id']}'),
+                'model': PlutoCell(value: car['model']),
+                'year': PlutoCell(value: '${car['year']}'),
+                'owner': PlutoCell(value: '${car['owner']['firstName']} ${car['owner']['lastName']}'),
               },
             ))
         .toList(growable: false);
@@ -33,18 +32,17 @@ class HomePage extends ViewModelWidget<HomeViewModel> {
 
   List<PlutoColumnGroup>? _getColumnGroups() {
     return [
-      PlutoColumnGroup(title: 'Owner information', children: [
-        PlutoColumnGroup(title: 'id', fields: ['id'], expandedColumn: true),
-        PlutoColumnGroup(title: 'firstName', fields: ['firstName'], expandedColumn: true),
-        PlutoColumnGroup(title: 'lastName', fields: ['lastName'], expandedColumn: true),
-        PlutoColumnGroup(title: 'phoneNumber', fields: ['phoneNumber'], expandedColumn: true),
-        PlutoColumnGroup(title: 'age', fields: ['age'], expandedColumn: true),
+      PlutoColumnGroup(title: 'Id', fields: ['id'], expandedColumn: true),
+      PlutoColumnGroup(title: 'Owner information', fields: ['owner'], expandedColumn: true),
+      PlutoColumnGroup(title: 'Car Information', children: [
+        PlutoColumnGroup(title: 'Model', fields: ['model'], expandedColumn: true),
+        PlutoColumnGroup(title: 'Year', fields: ['year'], expandedColumn: true),
       ]),
     ];
   }
 
   @override
-  Widget builder(BuildContext context, HomeViewModel viewModel, Widget? child) {
+  Widget builder(BuildContext context, CarsViewModel viewModel, Widget? child) {
     late final PlutoGridStateManager stateManager;
     return Container(
       color: Colors.white,
@@ -55,14 +53,14 @@ class HomePage extends ViewModelWidget<HomeViewModel> {
           children: [
             Padding(
               padding: Dimens.mediumPadding,
-              child: Text('You have ${viewModel.owners.length} owners registered on the database!', style: Dimens.mediumHeadTextStyle),
+              child: Text('Ke ${viewModel.cars.length} makina te regjistruara ne databaze!', style: Dimens.mediumHeadTextStyle),
             ),
             SizedBox(
               width: 1000,
               height: 1000,
               child: PlutoGrid(
                 columns: _getColumns(viewModel.columnNames),
-                rows: _getRows(viewModel.owners),
+                rows: _getRows(viewModel.cars),
                 columnGroups: _getColumnGroups(),
                 onLoaded: (PlutoGridOnLoadedEvent event) {
                   stateManager = event.stateManager;
@@ -79,7 +77,7 @@ class HomePage extends ViewModelWidget<HomeViewModel> {
   }
 
   @override
-  HomeViewModel viewModelBuilder() {
-    return getIt.get<HomeViewModel>();
+  CarsViewModel viewModelBuilder() {
+    return getIt.get<CarsViewModel>();
   }
 }
